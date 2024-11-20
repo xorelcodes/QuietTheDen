@@ -10,19 +10,17 @@ namespace SamplePlugin.Windows;
 
 public class MainWindow : Window, IDisposable
 {
-    private string GoatImagePath;
     private Plugin Plugin;
 
-    public MainWindow(Plugin plugin, string goatImagePath)
+    public MainWindow(Plugin plugin)
         : base("Quiet the Den##MainWindow", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
     {
         SizeConstraints = new WindowSizeConstraints
         {
-            MinimumSize = new Vector2(375, 330),
+            MinimumSize = new Vector2(375, 100),
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
 
-        GoatImagePath = goatImagePath;
         Plugin = plugin;
     }
 

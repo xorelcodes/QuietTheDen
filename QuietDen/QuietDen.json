@@ -1,8 +1,8 @@
 {
   "Author": "Xorel",
   "Name": "Quiet The Den",
-  "Punchline": "Stop yer ears bleedin' in Wolve's Den",
-  "Description": "Auto-mute BGM while in Wolve's Den, because I've had enough and it ends here /quietden toggles",
+  "Punchline": "Stop yer ears bleedin' in the Wolves' Den",
+  "Description": "Auto-mute BGM while in the Wolves' Den, because I've had enough and it ends here.",
   "ApplicableVersion": "any",
   "Tags": [
     "bgm",
