@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
@@ -11,21 +12,14 @@ public class ConfigWindow : Window, IDisposable
 
     public ConfigWindow(Plugin plugin) : base("Settings###SettingsWindow")
     {
-        Flags = ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar |
-                ImGuiWindowFlags.NoScrollWithMouse;
 
-        Size = new Vector2(232, 90);
-        SizeCondition = ImGuiCond.Always;
+        Size = ImGuiHelpers.ScaledVector2(230, 90);
+        SizeCondition = ImGuiCond.Once;
 
         Configuration = plugin.Configuration;
     }
 
     public void Dispose() { }
-
-    public override void PreDraw()
-    {
-       
-    }
 
     public override void Draw()
     {
