@@ -20,12 +20,6 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
     [PluginService] internal static ITextureProvider TextureProvider { get; private set; } = null!;
     [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
-    [PluginService] public static IDataManager Data { get; private set; }
-    [PluginService] public static IChatGui ChatGui { get; private set; }
-    [PluginService] public static ICommandManager Commands { get; private set; }
-    [PluginService] public static IPluginLog PluginLog { get; private set; }
-    [PluginService] public static ICondition Condition { get; private set; }
-    [PluginService] public static IGameConfig GameConfig { get; private set; }
 
     private const string CommandName = "/quietden";
 
