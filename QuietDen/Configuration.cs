@@ -1,8 +1,7 @@
 using Dalamud.Configuration;
-using Dalamud.Plugin;
 using System;
 
-namespace SamplePlugin;
+namespace QuietDen;
 
 [Serializable]
 public class Configuration : IPluginConfiguration

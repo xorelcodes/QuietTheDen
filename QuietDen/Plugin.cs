@@ -1,19 +1,11 @@
 using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-using System.IO;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
-using SamplePlugin.Windows;
-using QuietDen;
-using FFXIVClientStructs.FFXIV.Common.Lua;
-using System;
-using FFXIVClientStructs.FFXIV.Client.System.Threading;
-using System.Threading;
-using FFXIVClientStructs.FFXIV.Client.System.Framework;
-using System.Threading.Tasks;
+using QuietDen.Windows;
 
-namespace SamplePlugin;
+namespace QuietDen;
 
 public sealed class Plugin : IDalamudPlugin
 {
@@ -39,7 +31,6 @@ public sealed class Plugin : IDalamudPlugin
 
         WindowSystem.AddWindow(ConfigWindow);
 
-        PluginInterface.Create<Service>();
 
         ClientState.TerritoryChanged += CheckForTheDen;
 
@@ -66,7 +57,7 @@ public sealed class Plugin : IDalamudPlugin
             if (IsSndBgmMuted == 0)
             {
                 var muteTask = LoadingDelay(2000, 1);
-                await System.Threading.Tasks.Task.WhenAll(muteTask);
+                await System.Threading.Tasks.Task.WhenAny(muteTask);
                 PluginLog.Debug($"Disabling Wolves' Den BGM to save yer ears");
             }
         }
@@ -76,7 +67,7 @@ public sealed class Plugin : IDalamudPlugin
             {
 
                 var unmuteTask = LoadingDelay(4000, 0);
-                await System.Threading.Tasks.Task.WhenAll(unmuteTask);
+                await System.Threading.Tasks.Task.WhenAny(unmuteTask);
                 PluginLog.Debug($"Enabling BGM to bless yer ears");
             }
 
@@ -87,7 +78,7 @@ public sealed class Plugin : IDalamudPlugin
     private static async System.Threading.Tasks.Task LoadingDelay(int milliseconds, uint bgmStatus)
     {
         await System.Threading.Tasks.Task.Delay(milliseconds);
-        Service.GameConfig.Set(Dalamud.Game.Config.SystemConfigOption.IsSndBgm, bgmStatus);
+        GameConfig.Set(Dalamud.Game.Config.SystemConfigOption.IsSndBgm, bgmStatus);
     }
     public void Dispose()
     {

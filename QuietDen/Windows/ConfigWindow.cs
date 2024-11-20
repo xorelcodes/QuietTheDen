@@ -1,14 +1,13 @@
 using System;
-using System.Numerics;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace SamplePlugin.Windows;
+namespace QuietDen.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
-    private Configuration Configuration;
+    private readonly Configuration configuration;
 
     public ConfigWindow(Plugin plugin) : base("Settings###SettingsWindow")
     {
@@ -16,18 +15,20 @@ public class ConfigWindow : Window, IDisposable
         Size = ImGuiHelpers.ScaledVector2(230, 90);
         SizeCondition = ImGuiCond.Once;
 
-        Configuration = plugin.Configuration;
+        configuration = plugin.Configuration;
     }
 
-    public void Dispose() { }
+    public void Dispose() {
+        GC.SuppressFinalize(this);
+            }
 
     public override void Draw()
     {
-        var configValue = Configuration.UnmuteOnZoneOut;
+        var configValue = configuration.UnmuteOnZoneOut;
         if (ImGui.Checkbox("Unmute on Zoning", ref configValue))
         {
-            Configuration.UnmuteOnZoneOut = configValue;
-            Configuration.Save();
+            configuration.UnmuteOnZoneOut = configValue;
+            configuration.Save();
         }
 
       
