@@ -4,6 +4,8 @@ using Dalamud.Plugin;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
 using QuietDen.Windows;
+using System;
+using System.Threading.Tasks;
 
 namespace QuietDen;
 
@@ -31,7 +33,7 @@ public sealed class Plugin : IDalamudPlugin
 
         WindowSystem.AddWindow(ConfigWindow);
 
-
+        ClientState.LeavePvP += CheckForTheDen;
         ClientState.TerritoryChanged += CheckForTheDen;
 
         CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
@@ -47,7 +49,21 @@ public sealed class Plugin : IDalamudPlugin
 
     }
 
+    private async void CheckForTheDen()
+    {
+        PluginLog.Debug($"Leaving PvP event hit");
+        await AudioLogic();
+
+    }
+
     private async void CheckForTheDen(ushort obj)
+    {
+        PluginLog.Debug($"Changing Areas event hit");
+        await AudioLogic();
+     
+    }
+
+    private async Task  AudioLogic()
     {
         if (ClientState.MapId.Equals(51))
         {
@@ -56,7 +72,7 @@ public sealed class Plugin : IDalamudPlugin
 
             if (IsSndBgmMuted == 0)
             {
-                var muteTask = LoadingDelay(2000, 1);
+                var muteTask = LoadingDelay(200, 1);
                 await System.Threading.Tasks.Task.WhenAny(muteTask);
                 PluginLog.Debug($"Disabling Wolves' Den BGM to save yer ears");
             }
@@ -73,7 +89,6 @@ public sealed class Plugin : IDalamudPlugin
 
         }
 
-     
     }
     private static async System.Threading.Tasks.Task LoadingDelay(int milliseconds, uint bgmStatus)
     {
