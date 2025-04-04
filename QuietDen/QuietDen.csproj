@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Dalamud.NET.Sdk/12.0.2">
   <PropertyGroup>
       <Authors>Xorelcodes</Authors>
-    <Version>1.1.0.0</Version>
+    <Version>1.1.1.0</Version>
     <Description>Auto-mute BGM while in the Wolves' Den, because I've had enough and it ends here.</Description>
     <PackageProjectUrl>https://github.com/xorelcodes/QuietTheDen</PackageProjectUrl>
     <TargetFramework>net9.0-windows7.0</TargetFramework>
