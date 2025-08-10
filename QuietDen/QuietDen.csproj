@@ -11,10 +11,6 @@
     <Content Include="QuietDen.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dalamud.Plugin.Bootstrap.targets" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="DalamudPackager" Version="12.0.0" />
     <PackageReference Update="DotNet.ReproducibleBuilds" Version="1.2.25" />
   </ItemGroup>
 
