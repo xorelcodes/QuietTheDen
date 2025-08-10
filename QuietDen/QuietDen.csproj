@@ -1,5 +1,5 @@
-
-﻿<Project Sdk="Dalamud.NET.Sdk/13.0.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Dalamud.NET.Sdk/13.0.0">
   <PropertyGroup>
       <Authors>Xorelcodes</Authors>
     <Version>1.2.0.0</Version>
@@ -11,8 +11,4 @@
     <Content Include="packages.lock.json" />
     <Content Include="QuietDen.json" />
   </ItemGroup>
-  <ItemGroup>
-      <PackageReference Update="DalamudPackager" Version="13.0.0" />
-  </ItemGroup>
-
 </Project>
