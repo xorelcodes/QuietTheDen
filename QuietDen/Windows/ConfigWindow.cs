@@ -25,7 +25,7 @@ public class ConfigWindow : Window, IDisposable
     public override void Draw()
     {
         var configValue = configuration.UnmuteOnZoneOut;
-        if (ImGui.Checkbox("Unmute on Zoning", ref configValue))
+        if (ImGui.Checkbox("Unmute on leaving Wolves' Den", ref configValue))
         {
             configuration.UnmuteOnZoneOut = configValue;
             configuration.Save();

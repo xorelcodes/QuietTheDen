@@ -19,6 +19,8 @@ public sealed class Plugin : IDalamudPlugin
 
     private const string CommandName = "/quietden";
 
+    private uint previousZone = 0;
+    private const uint ZONE_WOLVESDEN = 51;
     public Configuration Configuration { get; init; }
 
     public readonly WindowSystem WindowSystem = new("QuietTheDen");
@@ -65,7 +67,8 @@ public sealed class Plugin : IDalamudPlugin
 
     private async Task  AudioLogic()
     {
-        if (ClientState.MapId.Equals(51))
+        var newZone = ClientState.MapId;
+        if (ClientState.MapId.Equals(ZONE_WOLVESDEN))
         {
 
             GameConfig.TryGet(Dalamud.Game.Config.SystemConfigOption.IsSndBgm, out uint IsSndBgmMuted);
@@ -79,7 +82,7 @@ public sealed class Plugin : IDalamudPlugin
         }
         else
         {
-            if (Configuration.UnmuteOnZoneOut)
+            if (previousZone.Equals(ZONE_WOLVESDEN) && Configuration.UnmuteOnZoneOut)
             {
 
                 var unmuteTask = LoadingDelay(4000, 0);
@@ -88,6 +91,8 @@ public sealed class Plugin : IDalamudPlugin
             }
 
         }
+
+        previousZone = newZone;
 
     }
     private static async System.Threading.Tasks.Task LoadingDelay(int milliseconds, uint bgmStatus)
