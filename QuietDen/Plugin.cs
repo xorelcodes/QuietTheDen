@@ -35,8 +35,8 @@ public sealed class Plugin : IDalamudPlugin
 
         WindowSystem.AddWindow(ConfigWindow);
 
-        ClientState.LeavePvP += CheckForTheDen;
-        ClientState.TerritoryChanged += CheckForTheDen;
+        //ClientState.LeavePvP += CheckForTheDen;
+        ClientState.MapIdChanged += CheckForTheDen;
 
         CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
         {
@@ -51,23 +51,24 @@ public sealed class Plugin : IDalamudPlugin
 
     }
 
-    private async void CheckForTheDen()
-    {
-        PluginLog.Debug($"Leaving PvP event hit");
-        await AudioLogic();
+    //private async void CheckForTheDen()
+    //{
+    //    PluginLog.Debug($"Leaving PvP event hit");
+    //    await AudioLogic();
 
-    }
+    //}
 
-    private async void CheckForTheDen(ushort obj)
+    private async void CheckForTheDen(uint obj)
     {
-        PluginLog.Debug($"Changing Areas event hit");
-        await AudioLogic();
+        PluginLog.Debug($"Changing Areas event hit - Map ID parameter is {obj}");
+        await AudioLogic(obj);
      
     }
 
-    private async Task  AudioLogic()
+    private async Task  AudioLogic(uint currentMapId)
     {
-        var newZone = ClientState.MapId;
+        var newZone = currentMapId;
+
         if (ClientState.MapId.Equals(ZONE_WOLVESDEN))
         {
 
