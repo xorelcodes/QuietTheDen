@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Dalamud.NET.Sdk/14.0.1">
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
 <PropertyGroup>
       <Authors>Xorelcodes</Authors>
-    <Version>1.2.2.0</Version>
+    <Version>1.2.3.0</Version>
     <Description>Auto-mute BGM while in the Wolves' Den, because I've had enough and it ends here.</Description>
     <PackageProjectUrl>https://github.com/xorelcodes/QuietTheDen</PackageProjectUrl>
   </PropertyGroup>
